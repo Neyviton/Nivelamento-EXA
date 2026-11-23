@@ -1,0 +1,70 @@
+# Aula 8, Prática 1: conversando com a API da biblioteca.
+#
+# 1. Num terminal, na pasta M7: python ferramentas/biblioteca.py
+# 2. Neste arquivo, clique em "Send Request", acima de cada pedido. A resposta abre ao lado.
+# 3. Para recomeçar com os dados originais, pare o servidor (Ctrl+C) e suba de novo.
+
+@base = http://127.0.0.1:8001
+
+### 1. Todos os livros
+GET {{base}}/livros
+
+### 2. Só os livros de um autor (parâmetro de consulta; o espaço vira %20)
+GET {{base}}/livros?autor=Machado%20de%20Assis
+
+### 3. Um livro pelo ISBN (parâmetro de caminho)
+GET {{base}}/livros/9780000000003
+
+### 4. Um livro que não existe
+GET {{base}}/livros/9780000000099
+
+### 5. Cadastrar um livro
+POST {{base}}/livros
+Content-Type: application/json
+
+{
+  "isbn": "9780000000005",
+  "titulo": "A Moreninha",
+  "autor": "Joaquim Manuel de Macedo",
+  "ano": 1844
+}
+
+### 6. Cadastrar o mesmo livro de novo
+POST {{base}}/livros
+Content-Type: application/json
+
+{
+  "isbn": "9780000000005",
+  "titulo": "A Moreninha",
+  "autor": "Joaquim Manuel de Macedo",
+  "ano": 1844
+}
+
+### 7. Cadastrar com dados fora do formato
+POST {{base}}/livros
+Content-Type: application/json
+
+{
+  "isbn": "123",
+  "titulo": "",
+  "autor": "Anônimo",
+  "ano": 3000
+}
+
+### 8. TODO: corrija o ano de A Moreninha para 1845 (PUT em /livros/{isbn}, corpo sem o isbn)
+PUT {{base}}/livros/9780000000005
+Content-Type: application/json
+
+{
+  "titulo": "A Moreninha",
+  "autor": "Joaquim Manuel de Macedo",
+  "ano": 1845
+}
+
+### 9. TODO: empreste Dom Casmurro (9780000000001) para a leitora Ana (POST em /emprestimos)
+
+### 10. TODO: tente remover Dom Casmurro enquanto ele está emprestado (DELETE em /livros/{isbn})
+
+### 11. TODO: devolva Dom Casmurro (DELETE em /emprestimos/{isbn})
+
+### 12. TODO: remova Dom Casmurro e confira, com um GET, que ele não existe mais

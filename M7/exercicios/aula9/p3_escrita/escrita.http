@@ -1,0 +1,41 @@
+# Aula 9, Prática 3: rotas de escrita. Recrie o banco antes, para começar do zero.
+
+@base = http://127.0.0.1:8000
+
+### 1. Lançar a nota de Ana Beatriz em CC201 (2026.2)
+PUT {{base}}/turmas/CC201/2026.2/matriculas/2025001/nota
+Content-Type: application/json
+
+{
+  "nota": 8.46
+}
+
+### 2. Matricular Olívia Santos em CC102 (2026.2)
+POST {{base}}/turmas/CC102/2026.2/matriculas
+Content-Type: application/json
+
+{
+  "matricula": "2026005"
+}
+
+### 3. A matrícula nova, no endereço do cabeçalho Location
+GET {{base}}/turmas/CC102/2026.2/matriculas/2026005
+
+### 4. Cancelar a matrícula
+DELETE {{base}}/turmas/CC102/2026.2/matriculas/2026005
+
+### 5. Nota fora do formato
+PUT {{base}}/turmas/CC201/2026.2/matriculas/2025001/nota
+Content-Type: application/json
+
+{
+  "nota": 11
+}
+
+### 6. Matricular de novo quem já está matriculado
+POST {{base}}/turmas/CC201/2026.2/matriculas
+Content-Type: application/json
+
+{
+  "matricula": "2025001"
+}

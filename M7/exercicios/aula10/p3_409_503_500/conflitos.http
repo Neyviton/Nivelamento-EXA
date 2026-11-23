@@ -1,0 +1,31 @@
+# Aula 10, Prática 3: regras de negócio (409) e banco fora do ar (503).
+# Recrie o banco antes, para começar do zero.
+
+@base = http://127.0.0.1:8000
+
+### 1. Nota num semestre encerrado
+PUT {{base}}/turmas/CC101/2026.1/matriculas/2025001/nota
+Content-Type: application/json
+
+{
+  "nota": 9
+}
+
+### 2. Matrícula em disciplina de outro curso
+POST {{base}}/turmas/ES201/2026.2/matriculas
+Content-Type: application/json
+
+{
+  "matricula": "2026005"
+}
+
+### 3. Cancelar matrícula que já tem nota (lance a nota antes, com o pedido 1 da Aula 9)
+PUT {{base}}/turmas/CC201/2026.2/matriculas/2025001/nota
+Content-Type: application/json
+
+{
+  "nota": 8.5
+}
+
+### 4. ... e agora o cancelamento
+DELETE {{base}}/turmas/CC201/2026.2/matriculas/2025001

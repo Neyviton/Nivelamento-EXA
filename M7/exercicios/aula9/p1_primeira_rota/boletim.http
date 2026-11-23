@@ -1,0 +1,16 @@
+# Aula 9, Prática 1: a primeira rota.
+# Suba a API num terminal, na pasta M7: uvicorn secretaria.api.app:app --reload
+
+@base = http://127.0.0.1:8000
+
+### 1. A API está no ar?
+GET {{base}}/saude
+
+### 2. Boletim de um aluno
+GET {{base}}/alunos/2025001/boletim
+
+### 3. Matrícula fora do formato
+GET {{base}}/alunos/20251/boletim
+
+### 4. Aluno que não existe
+GET {{base}}/alunos/1999999/boletim

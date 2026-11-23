@@ -1,0 +1,18 @@
+# Aula 9, Prática 2: rotas de leitura.
+
+@base = http://127.0.0.1:8000
+
+### 1. Relatório de uma turma (o código em minúsculas também vale)
+GET {{base}}/turmas/es202/2026.1
+
+### 2. Uma matrícula da turma
+GET {{base}}/turmas/CC101/2026.1/matriculas/2025001
+
+### 3. Ranking do curso, com parâmetros de consulta
+GET {{base}}/cursos/cc/ranking?semestre=2026.1&top=2
+
+### 4. Ranking sem o semestre, que é obrigatório
+GET {{base}}/cursos/CC/ranking
+
+### 5. Semestre fora do formato, no caminho
+GET {{base}}/turmas/CC201/2026.3

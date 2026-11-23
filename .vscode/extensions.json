@@ -10,6 +10,8 @@
 
     "qwtel.sqlite-viewer",
     "ms-ossdata.vscode-pgsql",
-    "mechatroner.rainbow-csv"
+    "mechatroner.rainbow-csv",
+
+    "humao.rest-client"
   ]
 }

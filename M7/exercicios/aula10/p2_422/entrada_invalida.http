@@ -1,0 +1,25 @@
+# Aula 10, Prática 2: entrada fora do formato responde 422, em português e campo a campo.
+
+@base = http://127.0.0.1:8000
+
+### 1. No caminho: matrícula com 5 dígitos
+GET {{base}}/alunos/20251/boletim
+
+### 2. Na consulta: falta o semestre, e o top passa de 10
+GET {{base}}/cursos/CC/ranking?top=50
+
+### 3. No corpo: nota acima de 10 e um campo que não existe no contrato
+PUT {{base}}/turmas/CC201/2026.2/matriculas/2025001/nota
+Content-Type: application/json
+
+{
+  "nota": 11,
+  "observacao": "prova de recuperação"
+}
+
+### 4. No corpo: JSON quebrado
+POST {{base}}/turmas/CC102/2026.2/matriculas
+Content-Type: application/json
+
+{
+  "matricula": "2026005",
